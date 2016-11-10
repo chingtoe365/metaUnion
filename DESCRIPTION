@@ -1,0 +1,12 @@
+Package: metaUnion
+Type: Package
+Title: Meta-analysis for unified Microarrays
+Version: 1.0
+Date: 2015-09-22
+Author: Jintao Long, Xinzhong Li
+Maintainer: Jintao Long<jintao.long@plymouth.ac.uk>
+Description: Meta-analysis using this package will include in the calculation all genes in the input studies. It does not require the same gene dimension for every study and will take into account the cases where genes are missing from some datasets. It also gives additional useful information in the output matrix including Bonferroni corrected p-value and effect direction.    
+License:
+NeedsCompilation: no
+Packaged: 2015-09-26 16:59:29 UTC; jintao
+Built: R 3.2.2; ; 2015-09-26 16:59:41 UTC; unix

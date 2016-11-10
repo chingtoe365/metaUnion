@@ -1,0 +1,9 @@
+Alzdata                 Trimmed microarray dataset for Alzheimer's
+                        disease in 6 studies
+inputExpCheck           Check input data format and filtering
+metaAnalysis            universal meta-analysis
+metaInfoStat            Generate summary table for input data
+metaUnion-package       Meta-analysis for unified Microarrays
+metaZscoreQQplot        Q-Q plot of meta-analysis z score
+sortMetaStat            Extract top ranking genes with certain
+                        measurement

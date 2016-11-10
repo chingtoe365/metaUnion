@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: universal meta-analysis</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for metaAnalysis {metaUnion}"><tr><td>metaAnalysis {metaUnion}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>universal meta-analysis</h2>
+
+<h3>Description</h3>
+
+<p>Apply LIMMA or student t-test to each probe and calculate statistics to identify differentially expressed genes (DEGs) in each study, followed by meta-analysis combining effect-size or p-value from different studies.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+	metaAnalysis(dataList, uniqGeneSelMethod="dprime", calWithLimma=TRUE, combinedPval=FALSE, filterData=TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>dataList</code></td>
+<td>
+
+<p>A list object containing lists for respective studies. Each list of a particular study contains an expression matrix and a sample information vector. The expression values should have been log 2 transformed. The expression matrix is constructed with each row representing a gene (probeset) and each column representing a sample. The order of the columns should be [case samples][control samples][two additional columns]. The two additional columns appended at the end indicate the gene Entrez ID (this column must be named as “Entrez.Gene”) and then the gene symbol.  The sample information vector contains two elements, the first one represents the number of case samples and the second one represents the number of control samples. 
+</p>
+</td></tr>	
+<tr valign="top"><td><code>uniqGeneSelMethod</code></td>
+<td>
+
+<p>Specifying the method used to select a gene if multiple entries correspond to one single gene, with &quot;dprime&quot; as default. Methods are as follows: logFC: select entry with largest absolute fold change; t: select entry with largest absolute t score; pval: select entry with smallest p value; n: select entry with largest number of expressed samples; df: select entry with largest absolute degree of freedom; d: select entry with largest absolute delta; vard: select entry with largest absolute vard; dprime: select entry with largest absolute dprime; vardprime: select entry with largest absolute vardprime. If two entriesy share the same value, then the one with the smaller row index in the expression matrix will be selected.
+</p>
+</td></tr>
+<tr valign="top"><td><code>calWithLimma</code></td>
+<td>
+
+<p>Specifying which method (t-test or LIMMA test) will be used to calculate the statistics for each study, default TRUE using LIMMA test. If using t-test for calculation, the statistics of probesets  whose expressed sample number in either case or control group is less than 2 will all set to NA and these probesets will be excluded if expCheckInput() function is triggered beforehand.  
+</p>
+</td></tr>
+<tr valign="top"><td><code>combinedPval</code></td>
+<td>
+
+<p>Choosing whether to combine p-value or effect size to execute meta-analysis, default FALSE combining effect size.
+</p>
+</td></tr>
+<tr valign="top"><td><code>filterData</code></td>
+<td>
+
+<p>Choosing whether to filter input data or not by using function inputExpCheck(), default TRUE (do filtering).
+</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A matrix summarizing the following information for each probe: EntrezID, gene official symbol, FoldChange in each study, effect-size in each study, test two-tailed p-value in each study, z-score after meta-analysis, p-value after meta-analysis, effect, significance, Bonferroni corrected p-value after meta-analysis. Probes expressed in less than 2 case/control samples will be ignored. Here &quot;effect&quot; indicates the direction of gene regulation, e.g. symbol &quot;+&quot;, &quot;-&quot; and &quot;?&quot; represent a gene being up-regulated, down-regulated or missing in that study. In &quot;significance&quot; tab, symbol &quot;!&quot;, &quot;#&quot; and &quot;?&quot; represent a gene being significant, not significant and missing in that study, where genes with p-value &lt;= 0.05 are considered significant
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+	metaAnalysis(Alzheimer, "dprime", TRUE, FALSE, TRUE)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>metaUnion</em> version 1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

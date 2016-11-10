@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Check input data format and filtering</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for inputExpCheck {metaUnion}"><tr><td>inputExpCheck {metaUnion}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Check input data format and filtering</h2>
+
+<h3>Description</h3>
+
+<p>Auto-run in function metaAnalysis(). Checks if the information in the input data list matches, and filters out probes without annotations or with multiple Entrez ID annotations. We use Entrez ID as the gene ID.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+	inputExpCheck(inputList)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>inputList</code></td>
+<td>
+
+<p>A list object containing lists for respective studies. Each list of a particular study contains an expression matrix and a sample information vector. The expression matrix is constructed with each row representing a gene (probeset) and each column representing a sample. The order of the columns should be [case samples][control samples][two additional columns]. The two additional columns appended at the end indicate the gene Entrez ID (this column must be named as “Entrez.Gene”) and then the gene symbol. The sample information vector contains two elements, the first one represents the number of case samples and the second one represents the number of control samples 
+</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A filtered data list with complete gene annotations (Entrez gene ID) and correct format for ongoing meta-analysis.  The following probesets are excluded from the list:  those which are expressed in less than 2 samples in each group; those which are unannotated or annotated in the wrong format.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+	inputExpCheck(inputList)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>metaUnion</em> version 1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>
